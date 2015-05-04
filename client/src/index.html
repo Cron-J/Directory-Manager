@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="uploadApp">
+<head>
+  <meta charset="utf-8" />
+  <title>FileuploadDemo</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  
+</head>
+<body>
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<div ng-controller="uploadController">
+		<input type="file" file-model = "upload_file">
+		<button type="submit" ng-click="upload()">Upload</button>
+	</div>
+</body>
+</html>
