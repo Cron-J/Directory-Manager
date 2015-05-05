@@ -1,7 +1,8 @@
 var Joi = require('joi'),
     fs = require('fs'),
-    Config = require('../config/config');
-    User = require('../model/user').User;
+    Config = require('../config/config'),
+    User = require('../model/user').User,
+    Path = require('path')
 
 exports.upload = {
   validate: {
@@ -42,8 +43,33 @@ exports.getTenantUrl = {
             path += '/'+ request.params.file_name;
           }  
         }  
-      }  
-      return reply(path);
+      }
+      
+      file_path = '../server/Files' + path;
+      fs.readdir(file_path, function (err, files) {
+        if (err) {
+            throw err;
+        }
+        else
+        {
+          info = {
+            path: '/' + Path.basename(file_path),
+            name: Path.basename(file_path)
+          }; 
+          if(path.extname(info.name))
+          {
+            info.type = "file";
+          }
+          else
+          {
+            info.type = "folder";
+          }
+          console.log("info",info);
+          files.forEach(function (file) {
+            console.log("xx",Path.extname(file));
+          })    
+        }  
+      });
     }  
   }
 };
@@ -66,3 +92,26 @@ exports.getGlobalUrl = {
     }  
   }
 };
+
+// function dirTree(filename) {
+//   var stats = fs.lstatSync(filename),
+//   info = {
+//       path: '/' + Path.basename(filename),
+//       name: Path.basename(filename)
+//   };
+//   if(stats.isDirectory()) {
+//       info.type = "folder";
+//       info.children = fs.readdirSync(filename).map(function(child) {
+//           //structure(child, info);
+//           child.path = '/'+ info.name + '/' + child;
+//           child.name = child;
+//           return child;
+//           //return('/'+ info.name + '/' + child);
+//       });
+//   } 
+//   else 
+//   {
+//     info.type = "file";
+//   }
+//   return info;
+// };
