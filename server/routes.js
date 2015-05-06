@@ -14,5 +14,4 @@ exports.endpoints = [
     { method: 'GET', path: '/searchGlobal/{header}', config: User.getGlobalUrl},
     { method: 'GET', path: '/searchGlobal/{header}/{type}', config: User.getGlobalUrl},
     { method: 'GET', path: '/searchGlobal/{header}/{type}/{file_name}', config: User.getGlobalUrl}
-    // { method: 'GET', path: '/:type(discussion|page)', config:User.test}
 ];

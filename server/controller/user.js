@@ -45,29 +45,30 @@ exports.getTenantUrl = {
         }  
       }
       file_path = '../server/Files' + path;
-      console.log("file_path",file_path);
-      var a = dirTree(file_path, true);
-      console.log("a",a);
-       return reply(a);
+      var result = dirTree(file_path, path, true);
+       return reply(result);
     }  
   }
 };
 
 
-function dirTree(filename, flag) {
-    var stats = fs.lstatSync(filename),
-        info = {
-            path: filename,
-            name: Path.basename(filename)
-        };
-
+function dirTree(filepath, orig_path, flag) {
+    console.log("orig_path",orig_path);
+    var stats = fs.lstatSync(filepath),
+    info = {
+        path: filepath,
+        name: Path.basename(filepath)
+    };
+    var user_path = makeUserPath(orig_path)
+    if(user_path) {
+      info.user_path = user_path;
+    }
     if (stats.isDirectory()) {
-        console.log("info",info);
         info.type = "folder";
         if(flag)
         {
-          info.children = fs.readdirSync(filename).map(function(child) {
-            return dirTree(filename + '/' + child, false);
+          info.children = fs.readdirSync(filepath).map(function(child) {
+            return dirTree(filepath + '/' + child, orig_path + '/'+ child, false);
           });
         }  
     } 
@@ -75,7 +76,6 @@ function dirTree(filename, flag) {
     {
         info.type = "file";
     }
-
     return info;
 }
 
@@ -97,3 +97,33 @@ exports.getGlobalUrl = {
     }  
   }
 };
+
+function getKeyByValue(obj, value ) {
+  for( var prop in obj ) {
+    if( obj.hasOwnProperty( prop ) ) {
+      if( obj[ prop ] === value )
+        return prop;
+    }
+  }
+};
+
+function makeUserPath(path) {
+  var split = path.split("/");
+  var new_path = ""; 
+    for(var i=0;i<split.length;i++)
+    {
+      if(split[i])
+      {
+        var map_value = getKeyByValue(Config.map, split[i]);
+        if(map_value)
+        {
+          new_path += "/" + map_value;
+        }
+        else
+        {
+          new_path += "/" + split[i];
+        }  
+      }  
+    }
+    return new_path;
+}
