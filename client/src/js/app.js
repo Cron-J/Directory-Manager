@@ -5,11 +5,13 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 	$scope.data = [
 		{
 			name: "header1",
-			path: "/header1"
+			path: "/header1",
+			type: "folder"
 		},
 		{
 			name: "header2",
-			path: "/header2"
+			path: "/header2",
+			type: "folder"
 		}
 	];
 	$scope.data.root = "/"
@@ -21,9 +23,10 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 			$scope.data = [];
 			for(i=0;i<data.children.length;i++)
 			{
-				$scope.data[i] = {name:"",path:""};
+				$scope.data[i] = {name:"",path:"",type:""};
 				$scope.data[i].name = data.children[i].name;
 				$scope.data[i].path = data.children[i].user_path;
+				$scope.data[i].type = data.children[i].type;
 			}
 			$scope.data.root = data.user_path;
 			var split = $scope.data.root.split("/");
@@ -41,12 +44,14 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 		{
 			$scope.data = [
 			{
-				name: "header1",
-				path: "/header1"
+			name: "header1",
+			path: "/header1",
+			type: "folder"
 			},
 			{
 				name: "header2",
-				path: "/header2"
+				path: "/header2",
+				type: "folder"
 			}];	
 			$scope.arr = ""
 		}
@@ -61,9 +66,10 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 				$scope.data = [];
 				for(i=0;i<data.children.length;i++)
 				{
-					$scope.data[i] = {name:"",path:""};
+					$scope.data[i] = {name:"",path:"",type:""};
 					$scope.data[i].name = data.children[i].name;
 					$scope.data[i].path = data.children[i].user_path;
+					$scope.data[i].type = data.children[i].type;
 				}
 				$scope.data.root = data.user_path;
 				var split = $scope.data.root.split("/");

@@ -8,25 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
 		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 	</head>
 
 	<body ng-app="DirectoryManager">
 		<div class="container" ng-controller="DirectoryManagerController">
-			<h1>Folder View</h1>
+			<h1>Folder View<span class="glyphicon glyphicon-folder-open"></span></h1>
 			<div class="row">
 				<div class="span6">
 					<div style="padding: 10px; border: 1px solid #aaa;">
 						<div style="height:40px;">	
-							<span><a style="cursor:pointer;" ng-click="back_children(data, 'Root')"> Root- </a>  
-								<div style="display:inline;" ng-repeat="val in arr">
+							<span>
+								<a style="cursor:pointer;" ng-click="back_children(data, 'Root')"> Root- </a>  
+								<div style="display:inline;font-size:16px;" ng-repeat="val in arr">
 									<a  ng-click="back_children(data, val)" style="cursor:pointer;">/{{val}}</a>
 								</div>		
 							<span>
 						</div>
 						<div>								
 							<ul ng-repeat="val in data">
-								<li class=""><a data-ng-click = "show_children(val.path, $index)" style="cursor:pointer;"> {{val.name}}</a></li>
+								<span>
+									<a ng-if="val.type=='folder'" data-ng-click = "show_children(val.path, $index)" style="cursor:pointer;color:black;">
+										<span class="glyphicon glyphicon-folder-close" style="font-size:18px;"></span>{{val.name}}
+									</a>	
+									<span ng-if="val.type=='file'"class="glyphicon glyphicon-file" style="font-size:18px;">{{val.name}}</span>
+								</span>
 							</ul>
 						<div>		
 					</div>
