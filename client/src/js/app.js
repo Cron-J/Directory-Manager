@@ -4,13 +4,13 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 
 	$scope.data = [
 		{
-			name: "header1",
-			path: "/header1",
+			name: "tenants",
+			path: "/tenants",
 			type: "folder"
 		},
 		{
-			name: "header2",
-			path: "/header2",
+			name: "global",
+			path: "/global",
 			type: "folder"
 		}
 	];
@@ -44,13 +44,13 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 		{
 			$scope.data = [
 			{
-			name: "header1",
-			path: "/header1",
+			name: "tenants",
+			path: "/tenants",
 			type: "folder"
 			},
 			{
-				name: "header2",
-				path: "/header2",
+				name: "global",
+				path: "/global",
 				type: "folder"
 			}];	
 			$scope.arr = ""

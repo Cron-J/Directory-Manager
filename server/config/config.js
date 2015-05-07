@@ -12,14 +12,14 @@ module.exports = {
         password: ''
     },
     map: {
-        header1 : 'Tenants',
-        header2 : 'Global',
-        type1   : 'Export-files',
-        type2   : 'Import-files',
-        type3   : 'Product-files',
-        type4   : 'Export-formats',
-        type5   : 'Import-formats',
-        type6   : 'logs'
+        tenants         : 'Tenants',
+        global          : 'Global',
+        export_files    : 'Export-files',
+        import_files    : 'Import-files',
+        product_files   : 'Product-files',
+        export_formats  : 'Export-formats',
+        import_formats  : 'Import-formats',
+        logs            : 'logs'
     }   
 
     // map: {
