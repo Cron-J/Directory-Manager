@@ -82,20 +82,3 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 	}
 	
 }]);
-
-// app.directive('testLi', function() {
-//   return {
-//     restrict: 'A'
-//     //require: '^ngModel',
-//     // scope: {
-//     //   ngModel: '='
-//     // },
-//     //template: '<h1>hgfhsdfghsf</h1>'
-//   },
-//   link:function(scope,element){
-//         $( element ).click(function(){
-//             // does not compile :(
-//             $(this).parent().append("<h1>sdzfs</h1>");
-//         });
-//     }
-// });

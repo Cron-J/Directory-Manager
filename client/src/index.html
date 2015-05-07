@@ -14,7 +14,7 @@
 
 	<body ng-app="DirectoryManager">
 		<div class="container" ng-controller="DirectoryManagerController">
-			<h1>Folder View<span class="glyphicon glyphicon-folder-open"></span></h1>
+			<h1>Directory-Manager&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></h1>
 			<div class="row">
 				<div class="span6">
 					<div style="padding: 10px; border: 1px solid #aaa;">
@@ -30,9 +30,9 @@
 							<ul ng-repeat="val in data">
 								<span>
 									<a ng-if="val.type=='folder'" data-ng-click = "show_children(val.path, $index)" style="cursor:pointer;color:black;">
-										<span class="glyphicon glyphicon-folder-close" style="font-size:18px;"></span>{{val.name}}
+										<span class="glyphicon glyphicon-folder-close" style="font-size:18px;"></span>&nbsp;{{val.name}}
 									</a>	
-									<span ng-if="val.type=='file'"class="glyphicon glyphicon-file" style="font-size:18px;">{{val.name}}</span>
+									<span ng-if="val.type=='file'"class="glyphicon glyphicon-file" style="font-size:18px;">&nbsp;{{val.name}}</span>
 								</span>
 							</ul>
 						<div>		
