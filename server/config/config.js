@@ -16,7 +16,7 @@ module.exports = {
         global          : 'Global',
         export_files    : 'Export-files',
         import_files    : 'Import-files',
-        product_files   : 'Product-files',
+        productFiles    : 'Product-files',
         export_formats  : 'Export-formats',
         import_formats  : 'Import-formats',
         logs            : 'logs'
