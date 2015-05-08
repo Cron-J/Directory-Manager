@@ -29,23 +29,29 @@ exports.upload = {
 exports.searchDirectory = {
   handler:function(request, reply) {
     var path = "";
-    var split = request.params.param1.split('/');
-    for(var i=0;i<split.length;i++)
-    {
-      if(Config.map[split[i]])
+    console.log("request.params",request.params);
+    if(!isEmptyObject(request.params))
+    {  
+      var split = request.params.param1.split('/');
+      for(var i=0;i<split.length;i++)
       {
-        path += '/' + Config.map[split[i]]; 
-      }
-      else
-      {
-        path += '/' + split[i];
-      }
+        if(Config.map[split[i]])
+        {
+          path += '/' + Config.map[split[i]]; 
+        }
+        else
+        {
+          path += '/' + split[i];
+        }
 
+      }
     }
-    file_path = '../server/Files' + path;
-    var result = dirTree(file_path, path, true);
-    return reply(result);      
-  }
+  
+      file_path = '../server/Files' + path;
+
+      var result = dirTree(file_path, path, true);
+      return reply(result);      
+  }  
 };  
 
 function dirTree(filepath, orig_path, flag) {
@@ -114,3 +120,12 @@ function getKeyByValue(obj, value ) {
     }
   }
 };
+
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      return false;
+    }
+  }
+  return true;
+}

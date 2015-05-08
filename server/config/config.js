@@ -21,11 +21,4 @@ module.exports = {
         import_formats  : 'Import-formats',
         logs            : 'logs'
     }   
-
-    // map: {
-    //     header1 : 'FolderA',
-    //     header2 : 'FolderB',
-    //     type1   : 'FolderC',
-    //     type2   : 'FolderD'
-    // } 
 };
