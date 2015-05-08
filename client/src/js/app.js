@@ -1,4 +1,20 @@
-var app = angular.module('DirectoryManager',[]);
+var app = angular.module('DirectoryManager',['ngRoute']);
+
+//routing
+app.config(function($routeProvider){
+	$routeProvider
+    	.when('/', { 
+        	controller:'DirectoryManagerController', 
+        	templateUrl:'views/a.html'
+      	})
+
+      	.when('/:param*',{
+      		controller:'DirectoryManagerController',
+      		templateUrl:'views/b.html'
+      	})
+      
+      	.otherwise('/')
+});
 				
 app.controller('DirectoryManagerController', ['$scope', '$http', function ($scope, $http) {
 
@@ -9,10 +25,15 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 			$scope.data = [];
 			for(i=0;i<data.children.length;i++)
 			{
-				$scope.data[i] = {name:"",path:"",type:""};
+				$scope.data[i] = {name:"",path:"",type:"",download_path:""};
 				$scope.data[i].name = data.children[i].name;
 				$scope.data[i].path = data.children[i].user_path;
 				$scope.data[i].type = data.children[i].type;
+				if(data.children[i].path)
+				{
+					var split = data.children[i].path.split('../client/src/');
+					$scope.data[i].download_path = split[1];
+				}	
 			}
 			$scope.arr = [];
 		});	
@@ -26,10 +47,15 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 			$scope.data = [];
 			for(i=0;i<data.children.length;i++)
 			{
-				$scope.data[i] = {name:"",path:"",type:""};
+				$scope.data[i] = {name:"",path:"",type:"",download_path:""};
 				$scope.data[i].name = data.children[i].name;
 				$scope.data[i].path = data.children[i].user_path;
 				$scope.data[i].type = data.children[i].type;
+				if(data.children[i].path)
+				{
+					var split = data.children[i].path.split('../client/src/');
+					$scope.data[i].download_path = split[1];
+				}
 			}
 			$scope.data.root = data.user_path;
 			var split = $scope.data.root.split("/");
@@ -40,7 +66,7 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 		})
 	}
 
-	$scope.show_children = function(path, index)
+	$scope.show_children = function(path)
 	{
 		getdata(path);
 	};
@@ -61,3 +87,4 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 	}
 	
 }]);
+

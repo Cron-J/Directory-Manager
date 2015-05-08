@@ -3,52 +3,17 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Directory-Manager</title>
-
 		<meta name="description" content="overview &amp; stats" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />	
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
 	</head>
-
 	<body ng-app="DirectoryManager">
-		<div class="container" ng-controller="DirectoryManagerController">
-			<h1>Directory-Manager&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></h1>
-			<div class="row">
-				<div class="span6">
-					<div style="padding: 10px; border: 1px solid #aaa;">
-						<div style="height:40px;">	
-							<span>
-								<a style="cursor:pointer;" ng-click="back_children(data, 'Root')"> Root- </a>  
-								<div style="display:inline;font-size:16px;" ng-repeat="val in arr">
-									<a  ng-click="back_children(data, val)" style="cursor:pointer;">/{{val}}</a>
-								</div>		
-							<span>
-						</div>
-						<div>								
-							<ul ng-repeat="val in data">
-								<span>
-									<a ng-if="val.type=='folder'" data-ng-click = "show_children(val.path, $index)" style="cursor:pointer;color:black;">
-										<span class="glyphicon glyphicon-folder-close" style="font-size:18px;"></span>&nbsp;{{val.name}}
-									</a>	
-									<span ng-if="val.type=='file'"class="glyphicon glyphicon-file" style="font-size:18px;">&nbsp;{{val.name}}</span>
-								</span>
-							</ul>
-						<div>		
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+		<div ng-view=""></div>
+		<script src="js/jquery-latest.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>
 		<script src="js/app.js"></script>
-		<script>
-
-		</script>
-
-
+		<script src="js/angular-route.min.js"></script>
 	</body>
 </html>

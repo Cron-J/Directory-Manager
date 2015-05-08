@@ -14,7 +14,7 @@ module.exports = {
     map: {
         tenants         : 'Tenants',
         global          : 'Global',
-        export_files    : 'Export-files',
+        export_files    : 'old-files/Export-files_rename',
         import_files    : 'Import-files',
         productFiles    : 'Product-files',
         export_formats  : 'Export-formats',
