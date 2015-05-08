@@ -14,7 +14,7 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 				$scope.data[i].path = data.children[i].user_path;
 				$scope.data[i].type = data.children[i].type;
 			}
-			$scope.data.root = "/"
+			$scope.arr = [];
 		});	
 	};
 
@@ -50,6 +50,7 @@ app.controller('DirectoryManagerController', ['$scope', '$http', function ($scop
 		if(val === 'Root')
 		{
 			$scope.init_stage();
+			$scope.arr = [];
 		}
 		else
 		{

@@ -29,7 +29,6 @@ exports.upload = {
 exports.searchDirectory = {
   handler:function(request, reply) {
     var path = "";
-    console.log("request.params",request.params);
     if(!isEmptyObject(request.params))
     {  
       var split = request.params.param1.split('/');
@@ -46,11 +45,9 @@ exports.searchDirectory = {
 
       }
     }
-  
-      file_path = '../server/Files' + path;
-
-      var result = dirTree(file_path, path, true);
-      return reply(result);      
+    file_path = '../server/Files' + path;
+    var result = dirTree(file_path, path, true);
+    return reply(result);      
   }  
 };  
 
