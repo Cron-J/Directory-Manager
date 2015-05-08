@@ -21,6 +21,8 @@
 							<a ng-if="val.type=='file'" target="_blank" href="{{val.download_path}}" download ="{{val.name}}"class="glyphicon glyphicon-file" style="font-size:18px;">&nbsp;{{val.name}}</a>
 						</span>
 					</ul>
+					
+					<span ng-if="error">{{error}}</span>
 				<div>		
 			</div>
 		</div>

@@ -44,13 +44,27 @@ app.controller('DirectoryManagerController', ['$scope', '$http', '$location', fu
 	function getdata(query) {
 		$http.get('/searchDirectory/' + query)
 		.success(function(data, status) {
-			$scope.data = sortArray(data);
-			$scope.data.root = data.user_path;
-			var split = $scope.data.root.split("/");
-			$scope.arr = [];
-			for(i=1;i<split.length;i++) {
-				$scope.arr.push(split[i]);
+			if(data != 'Invalid Path' )
+			{	
+				$scope.data = sortArray(data);
+				$scope.data.root = data.user_path;
+				var split = $scope.data.root.split("/");
+				$scope.arr = [];
+				for(var i=1;i<split.length;i++) {
+					$scope.arr.push(split[i]);
+				}
+				var path = ""; 
+				for(var i=0;i<split.length;i++)
+				{
+					path +=  split[i] + '/';
+				}
+				var trimPath = path.substring(0, path.length - 1);
+				$location.path(trimPath);
 			}
+			else
+			{
+				$scope.error = data;
+			}	
 		})
 	};
 
@@ -95,3 +109,10 @@ app.controller('DirectoryManagerController', ['$scope', '$http', '$location', fu
 	
 }]);
 
+function isEmpty(obj)
+{
+	for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+    return true;
+};

@@ -19,6 +19,7 @@ module.exports = {
         productFiles    : 'Product-files',
         export_formats  : 'Export-formats',
         import_formats  : 'Import-formats',
-        logs            : 'logs'
+        logs            : 'logs',
+        Output          : 'some-folder/Out'
     }   
 };

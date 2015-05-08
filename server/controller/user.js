@@ -32,6 +32,9 @@ exports.searchDirectory = {
 };  
 
 function dirTree(filepath, orig_path, flag) {
+  
+  try
+  {  
     var stats = fs.lstatSync(filepath),
     info = {
         path: filepath
@@ -64,6 +67,10 @@ function dirTree(filepath, orig_path, flag) {
         info.type = "file";
     }
     return info;
+  }
+  catch(e) {
+    return("Invalid Path")
+  }  
 };
 
 
