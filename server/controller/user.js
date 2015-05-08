@@ -29,17 +29,19 @@ exports.upload = {
 exports.searchDirectory = {
   handler:function(request, reply) {
     var path = "";
-    Object.keys(request.params).forEach(function(key) {
-      if(Config.map[request.params[key]])
+    var split = request.params.param1.split('/');
+    for(var i=0;i<split.length;i++)
+    {
+      if(Config.map[split[i]])
       {
-        path += '/' + Config.map[request.params[key]]; 
+        path += '/' + Config.map[split[i]]; 
       }
       else
       {
-        path += '/' + request.params[key];
+        path += '/' + split[i];
       }
 
-    });
+    }
     file_path = '../server/Files' + path;
     var result = dirTree(file_path, path, true);
     return reply(result);      
@@ -112,50 +114,3 @@ function getKeyByValue(obj, value ) {
     }
   }
 };
-
-/*
-exports.getGlobalUrl = {
-  handler: function(request, reply) {
-    var path = "";
-    if(request.params.header2)
-    {
-      path = '/' + Config.map[request.params.header2];
-      if(request.params.type)
-      {
-        path += '/' + Config.map[request.params.type]
-        if(request.params.file_name)
-        {
-          path += '/'+ request.params.file_name;
-        }  
-      }
-      return reply(path)
-    }  
-  }
-};
-
-
-
-exports.getTenantUrl = {
-  handler:function(request, reply) {
-    var path = "";
-    if(request.params.header)
-    {
-      path = '/' + Config.map[request.params.header]; 
-      if(request.params.id)
-      {
-        path += '/' + request.params.id;
-        if(request.params.type)
-        {
-          path += '/' + Config.map[request.params.type]
-          if(request.params.file_name)
-          {
-            path += '/'+ request.params.file_name;
-          }  
-        }  
-      }
-      file_path = '../server/Files' + path;
-      var result = dirTree(file_path, path, true);
-       return reply(result);
-    }  
-  }
-};*/
