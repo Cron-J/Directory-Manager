@@ -3,19 +3,19 @@
 	<div class="row">
 		<div class="span6">
 			<div style="padding: 10px; border: 1px solid #aaa;">
-				<div style="height:40px;">	
+				<div style="height:40px;">
 					<span>
 						<a style="cursor:pointer;" ng-click="back_children(data, 'Root')"> / </a>
 						<div style="display:inline;font-size:16px;" ng-repeat="val in arr">
-							<a ng-if="$last" ng-click="back_children(data, val)" style="cursor:pointer;">{{val}}</a>
+							<a ng-if="$last">{{val}}</a>
 							<a ng-if="!$last" ng-click="back_children(data, val)" style="cursor:pointer;">{{val}}/</a>
 						</div>		
 					<span>
 				</div>
-				<div>								
+				<div>
 					<ul ng-repeat="val in data">
 						<span>
-							<a ng-if="val.type=='folder'" ng-click = "show_children(val.path)" style="cursor:pointer;color:black;">
+							<a ng-if="val.type=='folder'" ng-click = "show_children(data.absurl, val.name)" style="cursor:pointer;color:black;">
 								<span class="glyphicon glyphicon-folder-close" style="font-size:18px;"></span>&nbsp;{{val.name}}
 							</a>	
 							<a ng-if="val.type=='file'" target="_blank" href="{{val.download_path}}" download ="{{val.name}}"class="glyphicon glyphicon-file" style="font-size:18px;">&nbsp;{{val.name}}</a>

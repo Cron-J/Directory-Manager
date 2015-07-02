@@ -1,4 +1,4 @@
-var app = angular.module('DirectoryManager',['ngRoute']);
+var app = angular.module('DirectoryManager',['ngRoute','ngCookies']);
 
 //routing
 app.config(function($routeProvider){
@@ -16,16 +16,22 @@ app.config(function($routeProvider){
       	.otherwise('/')
 });
 				
-app.controller('DirectoryManagerController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-
+app.controller('DirectoryManagerController', ['$scope', '$http', '$location', '$cookieStore', '$timeout', function ($scope, $http, $location, $cookieStore, $timeout) {
+	var count=0;
 	function init_stage()
 	{
-		$http.get('/searchDirectory/')
+		$http.get('/searchDirectory')
+		//$http.get('/searchDirectory/?query='+ getuserId())
 		.success(function(data, status) {
 			$scope.data = sortArray(data);
 			$scope.arr = [];
 		});	
 	};
+	
+	// $timeout(function() {
+ //       		$cookieStore.put('key',""); 
+ //    	}, 300000);	
+
 
 	function init()
 	{
@@ -41,13 +47,24 @@ app.controller('DirectoryManagerController', ['$scope', '$http', '$location', fu
 	};
 	init();
 
+	// if(window.location.href.indexOf("/Tenants/") > -1)
+	// {
+ //    	var splitData = window.location.href.split("/Tenants/");
+ //    	if(splitData)
+ //    	{
+ //    		$cookieStore.put('key',splitData[1].split("/")[0]);
+ //    		count++;
+ //    	}	
+	// }
+
 	function getdata(query) {
 		$http.get('/searchDirectory/' + query)
 		.success(function(data, status) {
 			if(data != 'Invalid Path' )
 			{	
 				$scope.data = sortArray(data);
-				$scope.data.root = data.user_path;
+				$scope.data.root = $location.path();
+				$scope.data.absurl = data.absurl;
 				var split = $scope.data.root.split("/");
 				$scope.arr = [];
 				for(var i=1;i<split.length;i++) {
@@ -86,10 +103,17 @@ app.controller('DirectoryManagerController', ['$scope', '$http', '$location', fu
 		return result;
 	};
 
-	$scope.show_children = function(path)
+	$scope.show_children = function(absurl,name)
 	{
-		var trimPath = path.substring(path.indexOf('/')+1);
-		$location.path('/' + trimPath);
+		if(absurl)
+		{
+			$location.path('/' + absurl + '/' + name);
+		}
+		else
+		{
+			$location.path('/' + name);
+		}
+		
 	};
 
 	$scope.back_children = function(data, val)
@@ -116,3 +140,17 @@ function isEmpty(obj)
     }
     return true;
 };
+
+
+// function getParameterByName(name) {
+//     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+//     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+//         results = regex.exec(location.search);
+//     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+// }
+
+// function getuserId()
+// {
+// 	var userId = getParameterByName('user');
+// }
+

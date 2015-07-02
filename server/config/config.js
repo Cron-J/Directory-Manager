@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { 
     server: {
         
             host: '0.0.0.0',
@@ -11,15 +11,17 @@ module.exports = {
         username: '',
         password: ''
     },
+
     map: {
-        tenants         : 'Tenants',
-        global          : 'Global',
-        export_files    : 'old-files/Export-files_rename',
-        import_files    : 'Import-files',
-        productFiles    : 'Product-files',
-        export_formats  : 'Export-formats',
-        import_formats  : 'Import-formats',
-        logs            : 'logs',
-        Output          : 'some-folder/Out'
-    }   
+        // Tenants         : 'Tenants',
+        // Global          : 'global',
+         //OldFiles        : 'OldFiles/OldFilesCopy',
+        // ImportFile      : 'ImportFile/NewImportFile',
+        // ProductFiles    : 'ProductFiles',
+         //ExportFormats   : 'ExportFormats/Test',
+        // ImportFormats   : 'ImportFormats',
+        // Logs            : 'Logs',
+        // Output          : 'SomeFolder/Out',
+        // TestFolder      : 'TestFolder/Output'
+    }  
 };
